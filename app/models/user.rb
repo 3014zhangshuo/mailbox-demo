@@ -6,7 +6,7 @@ class User < ApplicationRecord
   acts_as_messageable
   has_many :conversations
   def mailboxer_email(object)
- #return the model's email here
+    email
   end
 
   #cattr_accessor :current_user
