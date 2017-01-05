@@ -2,12 +2,12 @@ class ConversationsController < ApplicationController
  before_action :authenticate_user!
  before_action :get_mailbox
  before_action :get_conversation, except: [:index, :empty_trash]
- before_action :get_box, only: [:inbox]
+ # before_action :get_box, only: [:inbox]
 
  def index
-   if @box.eql? "inbox"
+   if params[:box].eql? "inbox"
      @conversations = @mailbox.inbox
-   elsif @box.eql? "sent"
+   elsif params[:box].eql? "sent"
      @conversations = @mailbox.sentbox
    else
      @conversations = @mailbox.trash
@@ -53,13 +53,13 @@ class ConversationsController < ApplicationController
 
   private
 
-  def get_box
-    if params[:box].blank? or !["inbox", "sent", "trash"].include?(params[:box])
-      params[:box] = 'inbox'
-    end
-
-    @box = params[:box]
-  end
+  # def get_box
+  #   if params[:box].blank? or !["inbox", "sent", "trash"].include?(params[:box])
+  #     params[:box] = 'inbox'
+  #   end
+  #
+  #   @box = params[:box]
+  # end
 
     def get_mailbox
       @mailbox ||= current_user.mailbox
