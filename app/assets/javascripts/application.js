@@ -15,10 +15,3 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-
-.alert-notice {
-  @extend .alert-success;
-}
-
-.alert-alert {
-  @extend .alert-warning;
