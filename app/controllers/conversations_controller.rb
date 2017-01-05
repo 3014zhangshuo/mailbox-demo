@@ -1,6 +1,7 @@
 class ConversationsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :get_mailbox
+ before_action :authenticate_user!
+ before_action :get_mailbox
+ before_action :get_conversation, except: [:index]
 
   def index
     @conversations = @mailbox.inbox.page(params[:page])
@@ -18,5 +19,5 @@ class ConversationsController < ApplicationController
     def get_conversation
       @conversation ||= @mailbox.conversations.find(params[:id])
     end
-    
+
 end
